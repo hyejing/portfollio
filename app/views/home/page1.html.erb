@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>취미</title>
+
+      <style>
+          
+          html, body{height: 100%;}
+
+    body{
+        margin: 0;
+        background-color: rgb(201,93,93);
+        }
+
+    section{
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+
+        section div{
+            width: 400px;
+            height: 500px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin: auto;
+        }
+        
+        section div h2{
+            padding-bottom: 20px;
+            border-bottom: 2px solid white;
+            word-break: keep-all; /*글자를 이쁘게 떨어뜨려요~*/
+        }
+        
+        
+        section div p{
+            padding-bottom: 50px;
+            font-size: 18px;
+        }
+        
+        section div ul{
+            margin: 0;
+            padding: 20px;
+            list-style: circle;
+        }
+        
+        section div ul li{
+            padding-bottom: 10px;
+        }
+        
+        /*핸드폰영역*/
+        
+        aside{
+            width:326px;
+            height: 641px;
+            position: fixed;
+            top:0;
+            bottom: 0;
+            right: 55%;
+            margin: auto;
+        }
+        
+        aside #cover{
+            position: absolute;
+            z-index: 10;
+        }
+        
+        aside #mask{
+            width: 252px;
+            height: 450px;
+            margin-top: 95px;
+            margin-left: 35px;  
+            overflow: hidden;
+        }
+        aside #mask ul{
+            width: 756px;
+            position: relative;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        
+        
+        aside #mask ul li{
+            width : 252px;
+            height: 450px;
+            float: left;
+        }
+        
+        /*nav 영역*/
+        
+        nav{
+            width: 15px;
+            height: 120px;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 30px;
+            margin: auto;
+        }
+        
+        
+        nav ul{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        nav ul li{
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            margin: 20px 0;
+           background-color: white;
+            text-indent: -99999px;
+        }
+        
+        
+        nav ul li a{display: block;}
+        
+        #page2 div{
+            opacity: 0;
+            transform: scale(0);
+        }
+        
+        #page3 div{
+            left: 100%;
+            position: fixed;
+            opacity: 0;
+        }
+        
+
+      </style>
+      
+      
+    <script src="../lib/jquery-1.11.1.min.js"></script>
+     <script src="../lib/jquery.easing.1.3.js"></script>
+     <script src="../lib/jquery.mousewheel.js"></script>
+     
+     <script>
+     
+         $(function(){
+  
+    /*------------------------------------------------------------------------------------------
+        
+            스크롤바 가동범위 a~b
+            움직일것 가동범위 c~d
+            
+            결과값 = (d-c)/(b-a) * (스크롤바위치 - a) +c ;
+    --------------------------------------------------------------------------------------------*/
+    
+        var page2Top = $('#page2').offset().top;
+        var page3Top = $('#page3').offset().top;
+        
+    
+    //브라우저 창의 스크롤바가 움직이면 함수 실행
+        $(window).scroll(function(){
+        //브라우저 창의 세로 스크롤바 위치값을 담아줌
+        var scrTop = $(this).scrollTop();
+        
+            function scrollFn(a,b,c,d){
+                
+                return scrAct = (d-c)/(b-a) *(scrTop - a) +c;
+
+                }
+            
+            /*  background-color : rgb(190, 108, 108);
+                background-color : rgb(79,177,36);
+                background-color : rgb(42,114,212);
+            */
+            
+            var bgR;
+            var bgG;
+            var bgB;
+            
+            if(scrTop >= 0) {
+                bgR = Math.floor(scrollFn(0,page2Top,190,79 ) );
+                bgG = Math.floor(scrollFn(0,page2Top,108,177 ) );
+                bgB = Math.floor(scrollFn(0,page2Top,108,36 ) );
+                
+                $('body').css({'background-color' : 'rgb(' + bgR + ',' + bgG + ',' + bgB + ')' })
+            }
+            
+               if(scrTop >= page2Top){
+                bgR = Math.floor(scrollFn(page2Top,page3Top,79,42 ) );
+                bgG = Math.floor(scrollFn(page2Top,page3Top,177,114 ) );
+                bgB = Math.floor(scrollFn(page2Top,page3Top,36,212 ) );
+                
+                $('body').css({'background-color' : 'rgb(' + bgR + ',' + bgG + ',' + bgB + ')' })
+            }
+            
+            var page1Ani = scrollFn( 0 , page2Top, 1, 0);
+           
+            $('#page1 div').css({
+                'opacity' : page1Ani,
+                'transform' : 'scale(' + page1Ani +')'
+            });
+            
+            
+            var page2Ani = scrollFn( 0 , page2Top, 0, 1);
+            var page2Rot = scrollFn(0,page2Top,0,720);
+            
+                $('#page2 div').css({
+                'opacity' : page2Ani,
+                'transform' : 'scale(' + page2Ani +') rotate(' + page2Rot +'deg)'
+            });
+            
+            
+            var page3Ani = scrollFn( page2Top , page3Top, 0, 1);
+            var page3Left = scrollFn( page2Top , page3Top, 100, 50);
+            
+             $('#page3 div').css({
+                'opacity' : page3Ani,
+                'left' : page3Left +'%'
+            });
+            
+            var iphoneAni = scrollFn(0,page3Top,0,-504);
+          
+            $('#mask ul').css({ 'left' : iphoneAni });
+        });
+    
+    
+    $('.scroll').click(function(e){
+        e.preventDefault();
+        
+        $('html, body').animate({'scrollTop' : $(this.hash).position().top},1500,'easeOutExpo')
+    
+    });
+    
+    
+    
+    });     
+
+
+
+         
+     </script>
+</head>
+<body>
+    
+    <section id="page1">
+        <div>
+        <h2>산책</h2>    
+        <p>개인 시간이 많았던 대학생활, 건강도 챙기며
+          혼자 많은 것들을 느낄 시간이 많았던 취미생활</p>
+        
+        </div>
+    </section>
+    
+    
+    
+    
+    <section id="page2">
+        <div>
+            <h2>볼링</h2>
+          <p>학교 사람들과 친목도 다지면서 재밌는 취미생활
+          (처음으로 100넘어서 찍었던 사진)</p>
+        
+        </div>
+    </section>
+    
+    
+    
+    
+    <section id="page3">
+          <div>
+        <h2>독서<br/></h2>    
+        <p>어릴때부터 많은 힘이 되었던 독서활동 현재는 목포공공도서관에서 독서회 활동중</p>
+        
+         
+        
+        </div>
+        
+    </section>
+    
+    <aside>
+        <div id="cover"><img src="../images/iphone.png" alt="아이폰"/></div>
+        <div id="mask">
+            <ul>
+                <li><img src="../images/page1.png" alt="페이지1"/></li>
+                <li><img src="../images/page2.png" alt="페이지1"/></li>
+                <li><img src="../images/page3.jpg" alt="페이지2"/></li>
+            </ul>
+        </div>
+    </aside>
+    
+ 
+    
+    
+</body>
+</html>

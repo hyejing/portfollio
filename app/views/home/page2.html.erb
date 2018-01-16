@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>자격증</title>
+    
+     <style>
+         #btn_group{
+    width: 300px;
+    margin: 50px auto;
+    
+}
+
+#btn_group div{
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    border: 1px solid #555;
+    box-sizing: border-box;
+    float: left;
+    background: rgb(255,255,255); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(241,241,241,1) 50%, rgba(225,225,225,1) 51%, rgba(246,246,246,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(241,241,241,1) 50%,rgba(225,225,225,1) 51%,rgba(246,246,246,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(241,241,241,1) 50%,rgba(225,225,225,1) 51%,rgba(246,246,246,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */
+    }
+
+
+
+#btn_group div:first-child{
+    border-right: 0;
+    border-radius: 20px 0 0 20px;
+}
+
+
+#btn_group div:last-child{
+    border-left: 0;
+    border-radius: 0 20px 20px 0;
+}
+
+    
+#btn_group .active{
+       /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f1f1f1+28,f1f1f1+34,f1f1f1+34,e1e1e1+37,e1e1e1+37,f6f6f6+100 */
+        background: rgb(255,255,255); /* Old browsers */
+        background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(241,241,241,1) 28%, rgba(241,241,241,1) 34%, rgba(241,241,241,1) 34%, rgba(225,225,225,1) 37%, rgba(225,225,225,1) 37%, rgba(246,246,246,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(241,241,241,1) 28%,rgba(241,241,241,1) 34%,rgba(241,241,241,1) 34%,rgba(225,225,225,1) 37%,rgba(225,225,225,1) 37%,rgba(246,246,246,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(241,241,241,1) 28%,rgba(241,241,241,1) 34%,rgba(241,241,241,1) 34%,rgba(225,225,225,1) 37%,rgba(225,225,225,1) 37%,rgba(246,246,246,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */
+
+    
+    box-shadow: 0 3px 7px #333 inset;
+}
+
+
+#list_img{
+    width: 90%;
+    margin: auto;
+    padding-top: 100px;
+    clear: both;
+}
+
+
+#list_img ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+#list_img ul li{
+    width: 200px;
+    height: 200px;
+    background-color: black;
+    margin: 0 10px 10px 0;
+    float: left;
+}
+
+
+#list_img ul li span{
+     width: 200px;
+    height: 200px;
+    position: absolute;
+}
+
+         
+         
+     </style>
+     
+     <script src="../../lib/jquery-1.11.1.min.js"></script>
+     <script src="../../lib/jquery.easing.1.3.js"></script>
+     
+    <script>
+         
+         $(function(){
+    //#btn_group div를 클릭하면 함수 실행
+    $('#btn_group div').click(function(){
+       //클릭한 div에 .active추가
+        $(this).addClass('active');
+        //#btn_group div중에서 클릭한 div가 아닌것에 active제거
+        $('#btn_group div').not(this).removeClass('active');
+        //#list_img ul li 감춤
+        $('#list_img ul li').hide();
+        //클릭한 버튼의 텍스트와 같은 이름을 가진 클래스를 보여줌
+        $('.'+$(this).text()).show();
+        
+        
+        
+        list_ani();
+    
+    });
+    
+
+    
+    
+});
+         
+     </script>
+</head>
+<body>
+    <div id="btn_group">
+        
+        <div class="active">ALL</div>
+        <div>MOS</div>
+        <div>COS</div>    
+    </div>
+    
+    <div id="list_img">
+        <ul>
+            <li class="ALL MOS "><span><img src="../images/outlook.JPG" alt="책"/></span></li>
+            <li class="ALL MOS"><span><img src="../images/ppt.JPG" alt="책"/></span></li>
+            <li class="ALL MOS"><span><img src="../images/word.JPG" alt="책"/></span></li>
+            <li class="ALL MOS"><span><img src="../images/excel.JPG" alt="책"/></span></li>
+            <li class="ALL MOS"><span><img src="../images/master.JPG" alt="책"/></span></li>
+            <li class="ALL COS"><span><img src="../images/cos.jpg" alt="책"/></span></li>
+            <li class="ALL"><span><img src="../images/lion.JPG" alt="책"/></span></li>
+            
+        </ul>
+    </div>
+    
+</body>
+</html>

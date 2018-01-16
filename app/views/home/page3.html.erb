@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>수상경력</title>
+    
+    <style>
+        ul{
+            margin: 0;
+            padding : 0;
+            list-style: none;
+        }
+    
+        
+        .list{
+            width:900px;
+            margin: 150px auto;
+        }
+    
+        
+        .list ul li{
+            width:240px;
+            padding: 10px;
+            margin: 20px;
+            float: left;
+        }
+        
+        .list ul li h4{
+            padding-bottom: 5px;
+            border-bottom: 4px solid black;
+        }
+    
+        
+        .list ul li div{
+            display: none; /*숨기기*/
+            
+        }
+        
+        /*도움말상자*/
+        #helpBox{
+             width: 180px;
+            padding: 10px;
+            background-color: rgba(225,255,255,.8);
+            border: 1px solid blue;
+            color:red;
+            position: absolute;
+            z-index: 1000;
+            display: none;
+        }
+        
+        
+        #helpBox h4{
+            
+            padding-bottom: 5px;
+            border-bottom: 2px solid black;
+            
+        }
+        
+        #helpBox p{
+            font-size: small;
+        }
+        
+    </style>
+    
+    
+    <script src="../lib/jquery-1.11.1.min.js"></script>
+    <script>
+    $(function(){
+
+        
+        //.subImg에서 마우스커서가 움직이면 함수 실행
+        $('.subImg').mousemove(function(e){
+           
+            $('#helpBox').css({
+                'display':'block',
+                'top' : e.pageY + 20 , 
+                'left' : e.pageX +20
+                
+              });
+            
+            
+            
+            $('#helpBox h4').text($(this).next().attr('data-subj'));
+            $('#helpBox p').html($(this).next().html());
+        
+           
+       });
+        
+        
+        //.subImg에서 마우스 커서가 빠져나가면 함수 실행
+         $('.subImg').mouseleave(function(){
+        //#helpBox숨
+             $('#helpBox').hide();
+             
+             
+                });
+    });
+    
+    
+    </script>
+    
+    
+    
+</head>
+<body>
+    
+    <div id="helpBox">
+        
+        <h4>제목</h4>
+        <p>설명글</p>
+    </div>
+    
+    <div class="list">
+        <ul>
+            <li>
+                <h4>컴공인의날 창의공학설계</h4>
+                <img src="../images/car.jpg" alt="아트웤" class="subImg"/>
+                <div data-subj="창의공학설계">
+                    
+                    2014년 1학년 컴퓨터공학인의날
+                    과학상자를 이용한 종이컵 많이 나르기 대회에서 동상수상
+
+                </div>
+            </li>
+            
+           <li><h4>창의대첩</h4>
+           <img src="../images/spoon.jpg" alt="웹" class="subImg"/>
+           <div data-subj="창의대첩">
+           
+               2017 하계 원광대학교 창의대첩에서
+               배달 음식에 수저와 젓가락이 달려있는 뚜껑을 아이디어로 특별기업상 수상
+               </div>
+            </li>
+
+          
+            
+        </ul>
+        
+    </div>
+    
+</body>
+</html>

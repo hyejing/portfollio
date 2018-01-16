@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   
+    <title>나혜진 포트폴리오</title>
+
+    
+     <style>
+         body{
+             margin: 0;
+             overflow: hidden;
+             background: url(../images/clouds-background.jpg) center center fixed;
+             background-size: cover;
+         }
+         
+         html,body,section{ height: 100%; }
+    
+         section div{ position: absolute; }
+      
+         section div img{ display: block; }
+         
+         .cloud1{
+             top:50%;
+             left:-1000px;
+             z-index: 2;
+         }
+         
+         .cloud2{
+             top:60%;
+             left:-1000px;
+             z-index: 4;
+         }
+         
+         
+         .cloud3{
+             bottom:0%;
+             left:-1020px;
+             z-index: 5;
+         }
+         
+         
+         .cloud4{
+             top:30%;
+             left:-506px;
+             z-index: 1;
+         }
+         
+         .ground{
+             width:700px;
+             height: 500px;
+             top:130px;
+             left: 0;
+             right: 0;
+             margin: auto;
+             z-index: 3;
+         }
+         
+         .ground img{
+             width:100%;
+         }
+         
+    </style>
+    
+    
+    
+    <script>
+    $(function(){
+        
+   
+    function moveGnd(){
+        
+         $('.ground').animate({'top':100},1000)
+                     .animate({'top':130},1000,null,moveGnd)
+        
+    }
+    
+     function cloud1(){
+            //구름1을 화면 오른쪽 바깥으로 이동하는 애니메이션
+         $('.cloud1').animate({'left':'100%'},
+                              30000,
+                              null,
+                              function(){ //에니메이션이 끝나면 함수 실행
+             
+                                        //구름1의 위치값을 처음위치로 변경
+                                     $('.cloud1').css({'left':-1000});
+                                        //구름1 함수 호출
+                               
+                               cloud1();        
+                }
+        );
+        
+    }
+     
+    
+     function cloud2(){
+            //구름1을 화면 오른쪽 바깥으로 이동하는 애니메이션
+         $('.cloud2').animate({'left':'100%'},
+                              15000,
+                              null,
+                              function(){ //에니메이션이 끝나면 함수 실행
+             
+                                        //구름1의 위치값을 처음위치로 변경
+                                     $('.cloud2').css({'left':-1000});
+                                        //구름1 함수 호출
+                               
+                               cloud2();        
+                }
+        );
+        
+    }
+    
+        
+     function cloud3(){
+            //구름1을 화면 오른쪽 바깥으로 이동하는 애니메이션
+         $('.cloud3').animate({'left':'100%'},
+                              40000,
+                              null,
+                              function(){ //에니메이션이 끝나면 함수 실행
+             
+                                        //구름1의 위치값을 처음위치로 변경
+                                     $('.cloud3').css({'left':-1020});
+                                        //구름1 함수 호출
+                               
+                               cloud3();        
+                }
+        );
+        
+    }
+    
+       function cloud4(){
+            //구름1을 화면 오른쪽 바깥으로 이동하는 애니메이션
+         $('.cloud4').animate({'left':'100%'},
+                              32000,
+                              null,
+                              function(){ //에니메이션이 끝나면 함수 실행
+             
+                                        //구름1의 위치값을 처음위치로 변경
+                                     $('.cloud4').css({'left':-506});
+                                        //구름1 함수 호출
+                               
+                               cloud4();        
+                }
+        );
+        
+    }
+    moveGnd();
+      cloud1();
+    cloud2();  
+     cloud3(); 
+    cloud4(); 
+    
+});
+            
+
+    
+    
+</script>
+
+
+    
+    
+</head>
+<body>
+   
+   
+   <section>
+       <div class="cloud1"><img src="../images/cloud1.png" alt="구름1"/></div>
+       <div class="cloud2"><img src="../images/cloud2.png" alt="구름2"/></div>
+       <div class="cloud3"><img src="../images/cloud3.png" alt="구름3"/></div>
+       <div class="cloud4"><img src="../images/cloud4.png" alt="구름4"/></div>
+       <div class="ground"><a href="/main"><img src="../images/ground.png" alt="땅"/></a></div>
+       
+   </section>
+    
+</body>
+</html>
+
+
+
+
